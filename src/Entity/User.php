@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,6 +31,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
+
+    #[ORM\OneToMany(mappedBy: 'developper', targetEntity: Projects::class)]
+    private Collection $developperProjects;
+
+    public function __construct()
+    {
+        $this->developperProjects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -108,6 +118,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(string $pseudo): static
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Projects>
+     */
+    public function getDevelopperProjects(): Collection
+    {
+        return $this->developperProjects;
+    }
+
+    public function addDevelopperProject(Projects $developperProject): static
+    {
+        if (!$this->developperProjects->contains($developperProject)) {
+            $this->developperProjects->add($developperProject);
+            $developperProject->setDevelopper($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevelopperProject(Projects $developperProject): static
+    {
+        if ($this->developperProjects->removeElement($developperProject)) {
+            // set the owning side to null (unless already changed)
+            if ($developperProject->getDevelopper() === $this) {
+                $developperProject->setDevelopper(null);
+            }
+        }
 
         return $this;
     }
