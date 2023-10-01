@@ -27,8 +27,11 @@ class Projects
     #[ORM\ManyToOne(inversedBy: 'developperProjects')]
     private ?User $developper = null;
 
-    #[ORM\ManyToMany(targetEntity: technology::class, inversedBy: 'projects')]
+    #[ORM\ManyToMany(targetEntity: Technology::class, inversedBy: 'projects')]
     private Collection $technology;
+
+    #[ORM\Column(length: 255)]
+    private ?string $url = null;
 
     public function __construct()
     {
@@ -108,6 +111,18 @@ class Projects
     public function removeTechnology(technology $technology): static
     {
         $this->technology->removeElement($technology);
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): static
+    {
+        $this->url = $url;
 
         return $this;
     }
