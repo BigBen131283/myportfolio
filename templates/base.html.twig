@@ -1,16 +1,64 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{% block title %}Titre par défaut{% endblock %}</title>
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block link %}{% endblock %}
+    <link rel="icon" type="image/gif" href="{{asset('/images/logo.png')}}">
+
+    {% block script %}{% endblock %}
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</head>
+
+<body>
+    {% block body %}
+    {# <section id="flash">
+                <!-- The flash message section -->  
+                {% for message in app.session.flashBag.get('info') %}
+                    <div class="alert-info">{{message}}</div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('success') %}
+                    <div class="alert-success">{{message}}</div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('error') %}
+                    <div class="alert-danger">{{message}}</div>
+                {% endfor %}
+    </section> #}
+    <header id="home">
+        <div class="menu">
+            <div class="logo">
+                <p>B</p>
+                <p>Ben</p>
+                <p>Web Developer</p>
+            </div>
+            
+            <nav>
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <a href="#skills">Mes compétences</a>
+                <a href="#achievements">Mes réalisations</a>
+                <a href="#fun">Fun</a>
+                <a href="">Mon CV</a>
+                <a href="#contact">Contact</a>
+                {# <a href="{{ path('admin') }}">Admin</a> #}
+            </nav>
+            <div class="social-networks">
+            </div>
+        </div>
+        {% block header %}{% endblock %}
+    </header>
+    
+
+
+
+        {% block main %}{% endblock %}
+        {% block footer %}{% endblock %}
+
+
+    {% endblock %}
+</body>
 </html>

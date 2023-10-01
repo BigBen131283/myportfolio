@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Big Ben - Welcome{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{{asset('/css/home.css')}}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{asset('/script/home.js')}}" defer></script>
+{% endblock %}
+
+{% block header %}
+    <div class="hero-section">
+        <p class="decor">&lsaquo;html&rsaquo;</p>
+        <p class="decor">&lsaquo;body&rsaquo;</p>
+        <div class="title">
+            <p class="decor">&lsaquo;h1&rsaquo;</p>
+            <h1>
+                <span class="animated">H</span><span class="animated">i</span><span class="animated">,</span><br>
+                <span class="animated">I</span><span class="animated">'</span><span class="animated">m</span>
+                <span class="fixed">B</span><span class="animated">e</span><span class="animated">n</span><br>
+                <span class="animated">W</span><span class="animated">e</span><span class="animated">b</span>&nbsp;<span class="fixed">D</span><span class="animated">e</span><span class="animated">v</span><span class="animated">e</span><span class="animated">l</span><span class="animated">o</span><span class="animated">p</span><span class="animated">e</span><span class="animated">r</span><span class="decor">&lsaquo;/h1&rsaquo;</span>
+            </h1>
+            <p class="decor">&lsaquo;p&rsaquo;</p>
+            <h2>Développeur front end / Symfony</h2>
+            <p class="decor">&lsaquo;/p&rsaquo;</p>
+            
+            <a href="#contact" class="contact">Contact me !</a href="#contact">
+        </div>
+        <div class="closing">
+            <p class="decor">&lsaquo;/body&rsaquo;</p>
+            <p class="decor">&lsaquo;/html&rsaquo;</p>
+        </div>
+    </div>
+{% endblock %}
+
