@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Big Ben - Admin{% endblock %}
+
+{% block link %}
+    {# <link rel="stylesheet" href="{{asset('/css/home.css')}}"> #}
+{% endblock %}
+
+{% block script %}{% endblock %}
+
+{% block navigation %}
+    <a href="{{ path('language.add') }}">Language</a>
+{% endblock %}
+
+{% block main %}
+    <ul>
+        {% for language in list %}
+            <li>{{ language.name }}</li>
+        {% endfor %}
+    </ul>
+
+    {{ form_start(form) }}
+        {{ form_label(form.name, "Language") }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+
+        {{ form_label(form.logo, "Logo") }}
+        {{ form_widget(form.logo) }}
+        {{ form_errors(form.logo) }}
+
+        <button type="submit">Ajouter</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -36,7 +36,6 @@
                 <p>Ben</p>
                 <p>Web Developer</p>
             </div>
-            
             <nav>
                 <a href="{{ path('app_home') }}">Accueil</a>
                 <a href="#skills">Mes compétences</a>
@@ -44,7 +43,9 @@
                 <a href="#fun">Fun</a>
                 <a href="">Mon CV</a>
                 <a href="#contact">Contact</a>
-                {# <a href="{{ path('admin') }}">Admin</a> #}
+                <a href="{{ path('app_admin') }}">Admin</a>
+                {% block navigation %}
+                {% endblock %}
             </nav>
             <div class="social-networks">
             </div>

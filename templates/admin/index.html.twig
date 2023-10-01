@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Big Ben - Admin{% endblock %}
+
+{% block link %}
+    {# <link rel="stylesheet" href="{{asset('/css/home.css')}}"> #}
+{% endblock %}
+
+{% block script %}{% endblock %}
+
+{% block main %}
+    <a href="{{ path('language.add') }}">Language</a>
+{% endblock %}
