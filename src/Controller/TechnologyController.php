@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Language;
-use App\Form\LanguageType;
+use App\Entity\Technology;
+use App\Form\TechnologyType;
 use App\Services\Uploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,21 +11,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('admin/language')]
-class LanguageController extends AbstractController
+#[Route('admin/technology')]
+class TechnologyController extends AbstractController
 {
-    #[Route('/add', name: 'language.add')]
-    public function addLanguage(
+    #[Route('/add', name: 'technology.add')]
+    public function addTechnology(
         Request $request,
         EntityManagerInterface $em,
         Uploader $uploader
     ): Response
     {
-        $language = new Language();
-        $repo = $em->getRepository(Language::class);
-        $allLanguages = $repo->findAll();
+        $technology = new Technology();
+        $repo = $em->getRepository(Technology::class);
+        $allTechnology = $repo->findAll();
 
-        $form = $this->createForm(LanguageType::class, $language);
+        $form = $this->createForm(TechnologyType::class, $technology);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
@@ -35,17 +35,18 @@ class LanguageController extends AbstractController
 
             $newFileName = $uploader->uploadFile($uploadedFile, $physicalPath);
             
-            $language->setLogo($newFileName);
+            $technology->setLogo($newFileName);
 
-            $em->persist($language);
+            $em->persist($technology);
             $em->flush();
 
             return $this->redirectToRoute('app_admin');
         }
 
-        return $this->render('admin/language.html.twig', [
-            'list' => $allLanguages,
+        return $this->render('admin/technology.html.twig', [
+            'list' => $allTechnology,
             'form' => $form
         ]);
     }
 }
+

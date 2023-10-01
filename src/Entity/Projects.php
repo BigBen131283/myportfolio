@@ -27,12 +27,12 @@ class Projects
     #[ORM\ManyToOne(inversedBy: 'developperProjects')]
     private ?User $developper = null;
 
-    #[ORM\ManyToMany(targetEntity: language::class, inversedBy: 'projects')]
-    private Collection $languages;
+    #[ORM\ManyToMany(targetEntity: technology::class, inversedBy: 'projects')]
+    private Collection $technology;
 
     public function __construct()
     {
-        $this->languages = new ArrayCollection();
+        $this->technology = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,25 +89,25 @@ class Projects
     }
 
     /**
-     * @return Collection<int, language>
+     * @return Collection<int, technology>
      */
-    public function getLanguages(): Collection
+    public function getTechnology(): Collection
     {
-        return $this->languages;
+        return $this->technology;
     }
 
-    public function addLanguage(language $language): static
+    public function addTechnology(technology $technology): static
     {
-        if (!$this->languages->contains($language)) {
-            $this->languages->add($language);
+        if (!$this->technology->contains($technology)) {
+            $this->technology->add($technology);
         }
 
         return $this;
     }
 
-    public function removeLanguage(language $language): static
+    public function removeTechnology(technology $technology): static
     {
-        $this->languages->removeElement($language);
+        $this->technology->removeElement($technology);
 
         return $this;
     }

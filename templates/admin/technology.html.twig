@@ -9,18 +9,18 @@
 {% block script %}{% endblock %}
 
 {% block navigation %}
-    <a href="{{ path('language.add') }}">Language</a>
+    <a href="{{ path('technology.add') }}">Technologie</a>
 {% endblock %}
 
 {% block main %}
     <ul>
-        {% for language in list %}
-            <li>{{ language.name }}</li>
+        {% for technology in list %}
+            <li>{{ technology.name }}</li>
         {% endfor %}
     </ul>
 
     {{ form_start(form) }}
-        {{ form_label(form.name, "Language") }}
+        {{ form_label(form.name, "Technology") }}
         {{ form_widget(form.name) }}
         {{ form_errors(form.name) }}
 
