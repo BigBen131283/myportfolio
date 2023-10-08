@@ -3,12 +3,17 @@
 // Backgrounds
 
 $backgroundMain: #1d1d1d;
+$backgroundAdmin: #c5c5c5;
 $backgroundMenu: #181818;
 $backgroundLogo: #000;
+$adminTableBg: #f1f1f1;
+$alternateAdminTableBg: #45dea5;
+$thirdAdminTableBg: #181818;
 
 // lines
 
 $menuLine: #282828;
+$adminTableOutline : #282828;
 
 // Text
 
@@ -17,10 +22,16 @@ $logoShadow: #45dea5;
 $logoName: #fff;
 $logoJob: #b4b4b4;
 $decorText: #7b7b7b;
+$adminTbodyText: #181818;
 
 $menuText: $logoJob;
 
 $hoverButton: #08fdd8;
+
+// Shadows
+
+$adminTableShadow : 0 5px 10px rgba(69,222,165,.75);
+$alternateAdminTableShadow : 0 5px 40px rgba(24,24,24,.75);
 
 // Fonts
 $homepageMain: 'Raleway';

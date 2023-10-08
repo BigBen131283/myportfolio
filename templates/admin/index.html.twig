@@ -3,12 +3,54 @@
 {% block title %}Big Ben - Admin{% endblock %}
 
 {% block link %}
-    {# <link rel="stylesheet" href="{{asset('/css/home.css')}}"> #}
+    <link rel="stylesheet" href="{{asset('/css/admin.css')}}">
 {% endblock %}
 
-{% block script %}{% endblock %}
+{% block script %}
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+{% endblock %}
 
-{% block main %}
+{% block navigation %}{% endblock %}
+{% block adminNav %}
     <a href="{{ path('technology.add') }}">Technologie</a>
     <a href="{{ path('projects.add') }}">Projets</a>
+{% endblock %}
+
+{% block main %}
+
+    <main>
+        <section class="technologies">
+            <h2>Languages et technologies</h2>
+            <table class="tableau-style">
+                
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Name</th>
+                        <th>Nombre de projets</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for technology in allTech %}
+                        <tr>
+                            <td>
+                                <img src="{{ asset('images/logos/') }}{{technology.logo}}" alt="logo {{ technology.name }}" class="tech-logo">
+                            </td>
+                            <td>{{technology.name}}</td>
+                            <td></td>
+                            <td>
+                               <a href=""><ion-icon name="build-outline"></ion-icon></a>
+                               <a href=""><ion-icon name="trash-outline"></ion-icon></a>                               
+                            </td>                   
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            
+            </table>
+        </section>
+    </main>
+
 {% endblock %}

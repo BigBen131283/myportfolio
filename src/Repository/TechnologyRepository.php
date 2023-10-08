@@ -21,6 +21,14 @@ class TechnologyRepository extends ServiceEntityRepository
         parent::__construct($registry, Technology::class);
     }
 
+    public function listTechnologies(): array
+    {
+        return $this->createQueryBuilder('t')
+                    ->orderBy('t.name', 'ASC')
+                    ->getQuery()
+                    ->getResult();
+    }
+
 //    /**
 //     * @return Technology[] Returns an array of Technology objects
 //     */

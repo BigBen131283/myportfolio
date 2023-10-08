@@ -38,14 +38,17 @@
             </div>
             <nav>
                 <a href="{{ path('app_home') }}">Accueil</a>
-                <a href="#skills">Mes compétences</a>
-                <a href="#achievements">Mes réalisations</a>
-                <a href="#fun">Fun</a>
-                <a href="">Mon CV</a>
-                <a href="#contact">Contact</a>
-                <a href="{{ path('app_admin') }}">Admin</a>
                 {% block navigation %}
+                    <a href="#skills">Mes compétences</a>
+                    <a href="#achievements">Mes réalisations</a>
+                    <a href="#fun">Fun</a>
+                    <a href="">Mon CV</a>
+                    <a href="#contact">Contact</a>
                 {% endblock %}
+                {# {% if app.user %} #}
+                    <a href="{{ path('app_admin') }}">Admin</a>
+                {# {% endif %} #}
+                {% block adminNav %}{% endblock %}
             </nav>
             <div class="social-networks">
             </div>

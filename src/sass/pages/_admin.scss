@@ -2,3 +2,39 @@
 @import '../utils/variables';
 @import '../base/typography';
 @import '../components/menu';
+@import '../components/admin_table';
+
+body {
+    background: $backgroundAdmin;
+    font-family: $homepageMain;
+
+    main{
+        padding: 0 0 0 13rem;
+        color: $logoName;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        section{
+            padding: 10vh 0 0 0;
+            max-width: 1100px;
+            width: 60%;
+
+            h2{
+                text-align: center;
+                font-size: $fs-22;
+                padding: 15px;
+                color: $adminTbodyText;
+                // margin-bottom: 20px;
+            }
+
+            &.technologies{
+                
+                .tech-logo{
+                    width: 30px;
+                }
+            }
+        }
+    }
+}

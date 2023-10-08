@@ -1,0 +1,47 @@
+.tableau-style {
+    border-collapse: collapse;
+    min-width: 400px;
+    width: 100%;
+    box-shadow: $alternateAdminTableShadow;
+    margin: 20px auto 10px;
+    // border: 2px solid $adminTableOutline;
+
+    thead{
+
+        tr{
+            background-color: $thirdAdminTableBg;
+            text-align: left;
+            
+            th{
+                padding: 15px 20px;
+                border: 1px solid #ddd;
+            }
+        }
+    }
+    
+    tbody{
+        color: $adminTbodyText;
+        font-weight: 600;
+
+        tr{
+            border: 1px solid #ddd;
+            td{
+                padding: 15px 20px;
+                border: 1px solid #ddd;
+
+                a{
+                    text-decoration: none;
+                    color: $adminTbodyText;
+                    font-size: $fs-20;
+                }
+            }
+
+            &:nth-child(even){
+                background-color: #f3f3f3;
+            }
+            &:last-of-type{
+                border-bottom: 2px solid $adminTableOutline;
+            }
+        }
+    }
+}
