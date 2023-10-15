@@ -29,6 +29,15 @@ class TechnologyRepository extends ServiceEntityRepository
                     ->getResult();
     }
 
+    public function remove(Technology $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return Technology[] Returns an array of Technology objects
 //     */

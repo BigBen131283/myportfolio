@@ -22,10 +22,10 @@ class TechnologyController extends AbstractController
     ): Response
     {
         $technology = new Technology();
-        $repo = $em->getRepository(Technology::class);
-        $allTechnology = $repo->findAll();
+        $repository = $em->getRepository(Technology::class);
+        $allTechnology = $repository->findAll();
 
-        $form = $this->createForm(TechnologyType::class, $technology);
+        $form = $this->createForm(TechnologyType::class, $technology, ['is_adding_form' => true]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
@@ -47,6 +47,62 @@ class TechnologyController extends AbstractController
             'list' => $allTechnology,
             'form' => $form
         ]);
+    }
+
+    #[Route('/update/{id}', name:'technology.update')]
+    public function updateTechnology(
+        int $id,
+        EntityManagerInterface $em,
+        Request $request,
+        Uploader $uploader
+    ): Response
+    {
+        $repository = $em->getRepository(Technology::class);
+        $technology = $repository->find($id);
+        $allTechnology = $repository->findAll();
+
+        $form = $this->createForm(TechnologyType::class, $technology, ['is_updating_form' => true]);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()){
+            
+            $uploadedFile = $form->get('logo')->getData();
+
+            if($uploadedFile){
+                $currentFileName = $repository->find($id)->getLogo($technology);
+                $physicalPath = $this->getParameter('logo_image_directory');
+                $uploader->deletePreviousFile($physicalPath, $currentFileName);
+                $newFileName = $uploader->uploadFile($uploadedFile, $physicalPath);
+
+                $technology->setLogo($newFileName);
+            }
+
+            $em->persist($technology);
+            $em->flush();
+            return $this->redirectToRoute('app_admin');
+        }
+
+        return $this->render('admin/technology.html.twig', [
+            'list' => $allTechnology,
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/delete/{id}', name:'technology.delete')]
+    public function deleteTechnology(
+        int $id,
+        EntityManagerInterface $em,
+        Uploader $uploader
+    ): Response
+    {
+        $repository = $em->getRepository(Technology::class);
+        $technology = $repository->find($id);
+        $currentFileName = $technology->getLogo($technology);
+
+        $uploader->deleteFile('images/logos/'.$currentFileName);
+        $repository->remove($technology, true);
+
+        return $this->redirectToRoute('app_admin');
     }
 }
 
