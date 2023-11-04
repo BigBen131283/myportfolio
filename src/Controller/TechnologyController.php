@@ -44,7 +44,7 @@ class TechnologyController extends AbstractController
         }
 
         return $this->render('admin/technology.html.twig', [
-            'list' => $allTechnology,
+            'allTech' => $allTechnology,
             'form' => $form
         ]);
     }
@@ -83,7 +83,7 @@ class TechnologyController extends AbstractController
         }
 
         return $this->render('admin/technology.html.twig', [
-            'list' => $allTechnology,
+            'allTech' => $allTechnology,
             'form' => $form
         ]);
     }

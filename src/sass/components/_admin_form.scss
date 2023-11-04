@@ -1,0 +1,58 @@
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0,0,0,.7);
+        border-radius: 5px;
+        box-shadow: $alternateAdminTableShadow;
+        padding: 20px 30px;
+        min-width: 400px;
+        width: 100%;
+
+        .input-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            padding: 10px 0px;
+
+            label{
+                font-size: $fs-20;
+                padding: 10px 5px;
+                // margin: 5px 0;
+                font-weight: 600;
+                letter-spacing: 2px;
+            }
+            input{
+                outline: none;
+                padding: 10px 5px;
+                font-size: $fs-20;
+                // margin: 5px 0;
+                width: 100%;
+            }
+        }
+        
+        button{
+            padding: 10px 20px;
+            font-size: $fs-24;
+            display: block;
+            border: none;
+            border-radius: 999px;
+            min-width: 200px;
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+
+            &:hover{
+                background-color: $alternateAdminTableBg;
+                box-shadow: $adminTableShadow;
+            }
+        }
+    }
+}

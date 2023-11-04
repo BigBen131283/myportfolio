@@ -19,38 +19,36 @@
 
 {% block main %}
 
-    <main>
-        <section class="technologies">
-            <h2>Languages et technologies</h2>
-            <table class="tableau-style">
-                
-                <thead>
-                    <tr>
-                        <th>Logo</th>
-                        <th>Name</th>
-                        <th>Nombre de projets</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for technology in allTech %}
-                        <tr>
-                            <td>
-                                <img src="{{ asset('images/logos/') }}{{technology.logo}}" alt="logo {{ technology.name }}" class="tech-logo">
-                            </td>
-                            <td>{{technology.name}}</td>
-                            <td></td>
-                            <td>
-                               <a href="{{ path('technology.update', {id:technology.id}) }}"><ion-icon name="build-outline"></ion-icon></a>
-                               <a href="{{ path('technology.delete', {id:technology.id}) }}"><ion-icon name="trash-outline"></ion-icon></a>                               
-                            </td>                   
-                        </tr>
-                    {% endfor %}
-                </tbody>
+    <section class="technologies">
+        <h2>Languages et technologies</h2>
+        <table class="tableau-style">
             
-            </table>
-        </section>
-    </main>
+            <thead>
+                <tr>
+                    <th>Logo</th>
+                    <th>Name</th>
+                    <th>Nombre de projets</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for technology in allTech %}
+                    <tr>
+                        <td>
+                            <img src="{{ asset('images/logos/') }}{{technology.logo}}" alt="logo {{ technology.name }}" class="tech-logo">
+                        </td>
+                        <td>{{technology.name}}</td>
+                        <td></td>
+                        <td>
+                            <a href="{{ path('technology.update', {id:technology.id}) }}"><ion-icon name="build-outline"></ion-icon></a>
+                            <a href="{{ path('technology.delete', {id:technology.id}) }}"><ion-icon name="trash-outline"></ion-icon></a>                               
+                        </td>                   
+                    </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+    </section>
 
 {% endblock %}

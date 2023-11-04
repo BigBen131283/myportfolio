@@ -46,6 +46,13 @@ td, th {
   width: 13rem;
   height: 100vh;
   position: fixed; }
+  @media screen and (max-width: 768px) {
+    .menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1; } }
   .menu .logo {
     background: #000;
     padding: 15px 5px;
@@ -98,6 +105,51 @@ td, th {
         background: #282828; }
       .menu nav a:hover {
         color: #08fdd8; }
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 5px 40px rgba(24, 24, 24, 0.75);
+    padding: 20px 30px;
+    min-width: 400px;
+    width: 100%; }
+    .form form .input-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      padding: 10px 0px; }
+      .form form .input-container label {
+        font-size: 1.25rem;
+        padding: 10px 5px;
+        font-weight: 600;
+        letter-spacing: 2px; }
+      .form form .input-container input {
+        outline: none;
+        padding: 10px 5px;
+        font-size: 1.25rem;
+        width: 100%; }
+    .form form button {
+      padding: 10px 20px;
+      font-size: 1.5rem;
+      display: block;
+      border: none;
+      border-radius: 999px;
+      min-width: 200px;
+      cursor: pointer;
+      transition: all .2s ease-in-out; }
+      .form form button:hover {
+        background-color: #45dea5;
+        box-shadow: 0 5px 10px rgba(69, 222, 165, 0.75); }
 
 .tableau-style {
   border-collapse: collapse;

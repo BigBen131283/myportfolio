@@ -3,31 +3,72 @@
 {% block title %}Big Ben - Admin{% endblock %}
 
 {% block link %}
-    {# <link rel="stylesheet" href="{{asset('/css/home.css')}}"> #}
+    <link rel="stylesheet" href="{{asset('/css/admin.css')}}">
 {% endblock %}
 
 {% block script %}{% endblock %}
 
-{% block navigation %}
+{% block navigation %}{% endblock %}
+
+{% block adminNav %}
     <a href="{{ path('technology.add') }}">Technologie</a>
+    <a href="{{ path('projects.add') }}">Projets</a>
 {% endblock %}
 
 {% block main %}
-    <ul>
-        {% for technology in list %}
-            <li>{{ technology.name }}</li>
-        {% endfor %}
-    </ul>
 
-    {{ form_start(form) }}
-        {{ form_label(form.name, "Technology") }}
-        {{ form_widget(form.name) }}
-        {{ form_errors(form.name) }}
+    <section class="form">
+    
+        {{ form_start(form) }}
 
-        {{ form_label(form.logo, "Logo") }}
-        {{ form_widget(form.logo) }}
-        {{ form_errors(form.logo) }}
+            <div class="input-container">
+                {{ form_label(form.name, "Technology") }}
+                {{ form_widget(form.name) }}
+                {{ form_errors(form.name) }}
+            </div>
 
-        <button type="submit">Ajouter</button>
-    {{ form_end(form) }}
+            <div class="input-container">
+                {{ form_label(form.logo, "Logo") }}
+                {{ form_widget(form.logo) }}
+                {{ form_errors(form.logo) }}
+            </div>
+
+            <button type="submit">Ajouter</button>
+
+        {{ form_end(form) }}
+    
+    </section>
+
+    <section class="technologies">
+        <h2>Languages et technologies</h2>
+        <table class="tableau-style">
+            
+            <thead>
+                <tr>
+                    <th>Logo</th>
+                    <th>Name</th>
+                    <th>Nombre de projets</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for technology in allTech %}
+                    <tr>
+                        <td>
+                            <img src="{{ asset('images/logos/') }}{{technology.logo}}" alt="logo {{ technology.name }}" class="tech-logo">
+                        </td>
+                        <td>{{technology.name}}</td>
+                        <td></td>
+                        <td>
+                            <a href="{{ path('technology.update', {id:technology.id}) }}"><ion-icon name="build-outline"></ion-icon></a>
+                            <a href="{{ path('technology.delete', {id:technology.id}) }}"><ion-icon name="trash-outline"></ion-icon></a>                               
+                        </td>                   
+                    </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+    </section>
+
 {% endblock %}
