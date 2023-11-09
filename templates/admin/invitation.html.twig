@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Big Ben - Admin{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{{asset('/css/admin.css')}}">
+{% endblock %}
+
+{% block script %}{% endblock %}
+
+{% block navigation %}{% endblock %}
+
+{% block adminNav %}
+    <a href="{{ path('technology.add') }}">Technologie</a>
+    <a href="{{ path('projects.add') }}">Projets</a>
+    <a href="{{ path('invitation.add') }}">Invitation</a>
+{% endblock %}
+
+{% block main %}
+
+    <section class="form">
+    
+        {{ form_start(form) }}
+
+            <div class="input-container">
+                {{form_label(form.email, "Email")}}
+                {{form_widget(form.email)}}
+                {{form_errors(form.email)}}
+            </div>
+
+            <button type="submit">Envoyer</button>
+
+        {{ form_end(form) }}
+    
+    </section>
+
+    <section class="invitations">
+        <h2>Invitations</h2>
+        <table class="tableau-style">
+            
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Uuid</th>
+                    <th>Contributor</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for invitation in invitations %}
+                    <tr>
+                        
+                        <td>{{invitation.email}}</td>
+                        <td>{{invitation.Uuid}}</td>
+                        <td></td>
+                  
+                    </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+    </section>
+
+{% endblock %}
