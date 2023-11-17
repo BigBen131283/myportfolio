@@ -43,6 +43,8 @@
                     <th>Email</th>
                     <th>Uuid</th>
                     <th>Contributor</th>
+                    <th>Roles</th>
+                    <th>Options</th>
                 </tr>
             </thead>
 
@@ -50,9 +52,21 @@
                 {% for invitation in invitations %}
                     <tr>
                         
-                        <td>{{invitation.email}}</td>
-                        <td>{{invitation.Uuid}}</td>
-                        <td></td>
+                        <td>{{ invitation.email }}</td>
+                        <td>{{ invitation.Uuid }}</td>
+                        <td>
+                            {% if invitation.contributor.pseudo is defined %}
+                                {{ invitation.contributor.pseudo }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if invitation.contributor.roles is defined %}
+                                {{ invitation.contributor.displayroles }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('invitation.delete', {id:invitation.id}) }}"><ion-icon name="trash-outline"></ion-icon></a>
+                        </td>
                   
                     </tr>
                 {% endfor %}

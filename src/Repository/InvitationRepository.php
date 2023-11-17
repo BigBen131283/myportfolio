@@ -21,6 +21,15 @@ class InvitationRepository extends ServiceEntityRepository
         parent::__construct($registry, Invitation::class);
     }
 
+    public function remove(Invitation $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return Invitation[] Returns an array of Invitation objects
 //     */

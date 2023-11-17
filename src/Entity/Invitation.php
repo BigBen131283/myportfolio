@@ -63,4 +63,10 @@ class Invitation
 
         return $this;
     }
+
+    public function __toString()
+    {
+        dump(json_encode($this->getContributor()->getRoles()));
+        return json_encode($this->getContributor()->getRoles());
+    }
 }

@@ -3,46 +3,108 @@
 namespace App\Controller;
 
 use App\Entity\Invitation;
+use App\Entity\User;
 use App\Form\InvitationType;
+use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\Uuid;
 
-#[Route('admin/invitation')]
 class InvitationController extends AbstractController
 {
-    #[Route('/add', name: 'invitation.add')]
+    public function __construct(
+        private readonly UserPasswordHasherInterface $userPasswordHasher,
+        private readonly EntityManagerInterface $em,
+    )
+    {}
+    
+    #[Route('admin/invitation/add', name: 'invitation.add')]
     public function addInvitation(
         Request $request,
-        EntityManagerInterface $em
     ): Response
     {
         // 1. faire un formulaire
         // 2. renseigner un email, générer un uuid automatiquement, ne pas afficher le champ contributor
         $invitation = new Invitation();
-        $repository = $em->getRepository(Invitation::class);
+        $repository = $this->em->getRepository(Invitation::class);
         $allInvitations = $repository->findAll();
         $form = $this->createForm(InvitationType::class, $invitation);
         $form->handleRequest($request);
-
-
+        dump($allInvitations);
+        
         if($form->isSubmitted() && $form->isValid())
         {
             $uuid = Uuid::v4();
             $invitation->setUuid($uuid);
             
-            $em->persist($invitation);
-            $em->flush();
+            $this->em->persist($invitation);
+            $this->em->flush();
             
             return $this->redirectToRoute('invitation.add'); 
         }
         
         return $this->render('admin/invitation.html.twig', [
             'invitations' => $allInvitations,
-            'form' => $form
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('admin/invitation/delete/{id}', name: 'invitation.delete')]
+    public function deleteInvitation(
+        int $id,
+        Invitation $invitation,
+        Request $request
+    ): Response
+    {
+        $repository = $this->em->getRepository(Invitation::class);
+        $invitation = $repository->find($id);
+
+        $repository->remove($invitation, true);
+        
+        return $this->redirectToRoute('invitation.add');
+    }
+
+    #[Route('invitation/{uuid}', name: 'invitation.register')]
+    public function index(
+        Invitation $invitation,
+        Request $request,
+    ): Response
+    {
+
+        if ($invitation->getContributor()!== null) {
+            throw new Exception('This Invitation has already been used.');
+        }
+
+        $user = new User();
+        $user->setEmail($invitation->getEmail());
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $this->userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $invitation->setContributor($user);
+
+            $this->em->persist($user);
+            $this->em->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('app_admin');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
         ]);
     }
 }
