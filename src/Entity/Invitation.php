@@ -23,6 +23,9 @@ class Invitation
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?User $contributor = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?array $roles = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,5 +71,17 @@ class Invitation
     {
         dump(json_encode($this->getContributor()->getRoles()));
         return json_encode($this->getContributor()->getRoles());
+    }
+
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(?array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 }

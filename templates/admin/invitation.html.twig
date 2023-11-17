@@ -27,6 +27,11 @@
                 {{form_widget(form.email)}}
                 {{form_errors(form.email)}}
             </div>
+            <div class="input-container">
+                {{form_label(form.roles, "Roles")}}
+                {{form_widget(form.roles)}}
+                {{form_errors(form.roles)}}
+            </div>
 
             <button type="submit">Envoyer</button>
 
@@ -61,7 +66,7 @@
                         </td>
                         <td>
                             {% if invitation.contributor.roles is defined %}
-                                {{ invitation.contributor.displayroles }}
+                                {{ invitation.contributor.roles | join(',') }}
                             {% endif %}
                         </td>
                         <td>

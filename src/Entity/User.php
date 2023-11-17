@@ -23,9 +23,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = ['ROLE_ADMIN', 'ROLE_USER'];
+    private array $roles = [];
 
-    private string $displayroles;
     /**
      * @var string The hashed password
      */
@@ -81,11 +80,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return array_unique($roles);
         // return $roles[0];
-    }
-
-    public function getDisplayRoles(): string
-    {
-        return json_encode($this->roles);
     }
 
     public function setRoles(array $roles): static

@@ -6,6 +6,7 @@ use App\Entity\Invitation;
 use App\Entity\User;
 use App\Form\InvitationType;
 use App\Form\RegistrationFormType;
+use App\Services\MailO2;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,7 @@ class InvitationController extends AbstractController
     #[Route('admin/invitation/add', name: 'invitation.add')]
     public function addInvitation(
         Request $request,
+        // MailO2 $mailer
     ): Response
     {
         // 1. faire un formulaire
@@ -35,7 +37,8 @@ class InvitationController extends AbstractController
         $allInvitations = $repository->findAll();
         $form = $this->createForm(InvitationType::class, $invitation);
         $form->handleRequest($request);
-        dump($allInvitations);
+        // dd($allInvitations);
+        // dd($_ENV['MAILER_DSN']);
         
         if($form->isSubmitted() && $form->isValid())
         {
@@ -44,6 +47,13 @@ class InvitationController extends AbstractController
             
             $this->em->persist($invitation);
             $this->em->flush();
+
+            // $mailer->sendEmail(
+            //     'no-reply@big-ben.fr',
+            //     $invitation->getEmail(),
+            //     'Invitation',
+            //     'Cliquer sur le lien ci-dessous pour finaliser votre inscription'
+            // );
             
             return $this->redirectToRoute('invitation.add'); 
         }
@@ -58,7 +68,6 @@ class InvitationController extends AbstractController
     public function deleteInvitation(
         int $id,
         Invitation $invitation,
-        Request $request
     ): Response
     {
         $repository = $this->em->getRepository(Invitation::class);
@@ -84,8 +93,9 @@ class InvitationController extends AbstractController
         $user->setEmail($invitation->getEmail());
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
+        
         if($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles($invitation->getRoles());
             // encode the plain password
             $user->setPassword(
                 $this->userPasswordHasher->hashPassword(
