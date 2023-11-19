@@ -1,0 +1,107 @@
+@import '../base/reset';
+@import '../base/typography';
+@import '../utils/variables';
+@import '../components/animations';
+
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: $redirectBackground;
+
+    header{
+        display: none;
+    }
+
+    .parallax{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url('../images/parallax/redirection/background.png') no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        overflow: hidden;
+    
+        .error-msg{
+            position: absolute;
+            top: 35vh;
+            font-family: $redirect;
+            font-size: $fs-40;
+            color: $redirectError;
+            text-shadow: 2px 4px 5px $moonShadow;
+            z-index: 97;
+        }
+
+        img{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            pointer-events: none;
+
+            &#gate-left{
+                position: fixed;
+                transform: translateX(-282px);
+            }
+            &#gate-right{
+                position: fixed;
+                transform: translateX(305px);
+            }
+            &#grass{
+                z-index: 98;
+            }
+        }
+
+        .indicator{
+            position: absolute;
+            z-index: 99;
+            bottom: 40px;
+            left: 0;
+            background: $redirectBackgroundButton;
+            box-shadow: 0 0 5px $moonShadow,
+                        0 0 15px $moonShadow,
+                        0 0 35px $moonShadow;
+            border-radius: 40px;
+            padding: 15px 10px;
+            margin: 0 30px;
+
+            p{
+                writing-mode: vertical-rl;
+                text-orientation: sideways-right;
+                letter-spacing: 1px;
+                color: $redirectButton;
+                font-family: $homepageMain;
+                animation: groovie 1s infinite;
+            }
+        }
+    }
+
+    .return-safe{
+        min-height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .button{
+            color: $redirectButton;
+            background-color: $redirectBackgroundButton;
+            font-size: $fs-26;
+            font-family: $redirect;
+            text-decoration: none;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 40px;
+            transition: all 0.5s ease-in-out;
+            z-index: 99;
+
+            &:hover{
+                box-shadow: 0px 0px 15px $redirectButton,
+                            0 0 15px $redirectButton,
+                            0 0 35px $redirectButton;
+            }
+        }
+    }
+}
+

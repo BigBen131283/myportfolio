@@ -3,7 +3,7 @@
 {% block title %}Big Ben - Admin{% endblock %}
 
 {% block link %}
-    {# <link rel="stylesheet" href="{{asset('/css/home.css')}}"> #}
+    <link rel="stylesheet" href="{{asset('/css/admin.css')}}">
 {% endblock %}
 
 {% block script %}{% endblock %}
@@ -17,33 +17,74 @@
 {% endblock %}
 
 {% block main %}
-    <ul>
-        {% for project in list %}
-            <li>{{ project.name }}</li>
-        {% endfor %}
-    </ul>
 
-    {{ form_start(form) }}
-        {{ form_label(form.name, "Nom du projet") }}
-        {{ form_widget(form.name) }}
-        {{ form_errors(form.name) }}
+    <section class="form">
+
+        {{ form_start(form) }}
+
+            <div class="input-container">
+                {{ form_label(form.name, "Nom du projet") }}
+                {{ form_widget(form.name) }}
+                {{ form_errors(form.name) }}
+            </div>
+            
+            <div class="input-container">
+                {{ form_label(form.description, "Description") }}
+                {{ form_widget(form.description) }}
+                {{ form_errors(form.description) }}
+            </div>
+
+            <div class="input-container">
+                {{ form_label(form.url, "URL") }}
+                {{ form_widget(form.url) }}
+                {{ form_errors(form.url) }}
+            </div>
+            
+            <div class="input-container">
+                {{ form_label(form.image, "Image") }}
+                {{ form_widget(form.image) }}
+                {{ form_errors(form.image) }}
+            </div>
+
+            <div class="input-container">
+                {{ form_label(form.technology, "Technologie(s)") }}
+                {{ form_widget(form.technology) }}
+                {{ form_errors(form.technology) }}
+            </div>
+
+            <button type="submit">Ajouter</button>
+
+        {{ form_end(form) }}
+    
+    </section>
+
+    <section class="projects">
+        <h2>Projets</h2>
+        <table class="tableau-style">
         
-        {{ form_label(form.description, "Description") }}
-        {{ form_widget(form.description) }}
-        {{ form_errors(form.description) }}
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>url</th>
+                    <th>Technologies</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
 
-        {{ form_label(form.url, "URL") }}
-        {{ form_widget(form.url) }}
-        {{ form_errors(form.url) }}
-        
-        {{ form_label(form.image, "Image") }}
-        {{ form_widget(form.image) }}
-        {{ form_errors(form.image) }}
+            <tbody>
+                {% for project in projects %}
+                    <tr>
+                        <td>{{ project.name }}</td>
+                        <td>{{ project.description }}</td>
+                        <td>{{ project.url }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
 
-        {{ form_label(form.technology, "Technologie(s)") }}
-        {{ form_widget(form.technology) }}
-        {{ form_errors(form.technology) }}
+        </table>
+    </section>
 
-        <button type="submit">Ajouter</button>
-    {{ form_end(form) }}
 {% endblock %}

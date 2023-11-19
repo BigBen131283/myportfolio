@@ -37,6 +37,36 @@
                 // margin: 5px 0;
                 width: 100%;
             }
+            #invitation_roles{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-left: 20px;
+
+                input{
+                    height: 22px;
+                    width: 22px;
+                }
+                label{
+                    padding: 0 25px 0 10px;
+                }
+            }
+            #projects_technology{
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                align-items: center;
+                padding-left: 20px;
+
+                input{
+                    height: 22px;
+                    width: 22px;
+                    // padding: 0 0 10px 0;
+                }
+                label{
+                    padding: 0 25px 0 10px;
+                }
+            }
         }
         
         button{

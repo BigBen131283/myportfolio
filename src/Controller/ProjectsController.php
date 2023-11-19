@@ -48,7 +48,7 @@ class ProjectsController extends AbstractController
         }
         
         return $this->render('admin/projects.html.twig', [
-            "list" => $allProjects,
+            "projects" => $allProjects,
             "form" => $form
         ]);
     }

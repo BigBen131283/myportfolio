@@ -1,0 +1,137 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal; }
+
+ul {
+  list-style: none; }
+
+button, input, select {
+  margin: 0; }
+
+html {
+  box-sizing: border-box; }
+
+*, *::before, *::after {
+  box-sizing: inherit; }
+
+img, video {
+  height: auto;
+  max-width: 100%; }
+
+iframe {
+  border: 0; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td, th {
+  padding: 0; }
+
+/* Font-size */
+/* De base : 1rem = 16px */
+@keyframes bubble {
+  20%,
+  50%,
+  80%,
+  to {
+    transform: scale(1, 1); }
+  40% {
+    transform: scale(1.75, 0.65); }
+  45% {
+    transform: scale(1.75, 0.65); }
+  70% {
+    transform: scale(1.25, 0.75); }
+  90% {
+    transform: scale(1.15, 0.85); } }
+
+@keyframes groovie {
+  0% {
+    transform: translateY(-10px); }
+  50% {
+    transform: translateY(10px); }
+  100% {
+    transform: translateY(-10px); } }
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #020912; }
+  body header {
+    display: none; }
+  body .parallax {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../images/parallax/redirection/background.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden; }
+    body .parallax .error-msg {
+      position: absolute;
+      top: 35vh;
+      font-family: "Anton";
+      font-size: 2.5rem;
+      color: #1b283a;
+      text-shadow: 2px 4px 5px #f9f9f9;
+      z-index: 97; }
+    body .parallax img {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none; }
+      body .parallax img#gate-left {
+        position: fixed;
+        transform: translateX(-282px); }
+      body .parallax img#gate-right {
+        position: fixed;
+        transform: translateX(305px); }
+      body .parallax img#grass {
+        z-index: 98; }
+    body .parallax .indicator {
+      position: absolute;
+      z-index: 99;
+      bottom: 40px;
+      left: 0;
+      background: #416671;
+      box-shadow: 0 0 5px #f9f9f9, 0 0 15px #f9f9f9, 0 0 35px #f9f9f9;
+      border-radius: 40px;
+      padding: 15px 10px;
+      margin: 0 30px; }
+      body .parallax .indicator p {
+        writing-mode: vertical-rl;
+        text-orientation: sideways-right;
+        letter-spacing: 1px;
+        color: #fef2ca;
+        font-family: "Raleway";
+        animation: groovie 1s infinite; }
+  body .return-safe {
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    body .return-safe .button {
+      color: #fef2ca;
+      background-color: #416671;
+      font-size: 1.625rem;
+      font-family: "Anton";
+      text-decoration: none;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 40px;
+      transition: all 0.5s ease-in-out;
+      z-index: 99; }
+      body .return-safe .button:hover {
+        box-shadow: 0px 0px 15px #fef2ca, 0 0 15px #fef2ca, 0 0 35px #fef2ca; }

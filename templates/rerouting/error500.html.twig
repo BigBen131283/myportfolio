@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Big Ben - Oups, something went wrong{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{{asset('/css/redirect.css')}}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{asset('/script/redirect.js')}}" defer></script>
+{% endblock %}
+
+{% block navigation %}{% endblock %}
+
+{% block adminNav %}{% endblock %}
+
+{% block main %}
+    <section class="parallax">
+        <h2 class="error-msg">Hmmm... Il semble que vous vous soyez égaré !</h2>
+        <img src="{{asset('/images/parallax/redirection/tree-left.png')}}" id="tree-left">
+        <img src="{{asset('/images/parallax/redirection/tree-right.png')}}" id="tree-right">
+        <img src="{{asset('/images/parallax/redirection/gate-left.png')}}" id="gate-left">
+        <img src="{{asset('/images/parallax/redirection/gate-right.png')}}" id="gate-right">
+        <img src="{{asset('/images/parallax/redirection/grass.png')}}" id="grass">
+
+        <div class="indicator">
+            <p>Scroll Down</p>
+        </div>
+    </section>
+
+    <section class="return-safe">
+        <a href="{{ path('app_home') }}" class="button">Revenir en lieu sûr</a>
+    </section>
+{% endblock %}

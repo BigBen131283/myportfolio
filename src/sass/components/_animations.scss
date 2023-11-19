@@ -18,3 +18,15 @@
         transform: scale(1.15, 0.85);
     }
 }
+
+@keyframes groovie{
+    0%{
+        transform: translateY(-10px);
+    }
+    50%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(-10px);
+    }
+}

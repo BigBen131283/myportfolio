@@ -86,6 +86,8 @@ class InvitationController extends AbstractController
     {
 
         if ($invitation->getContributor()!== null) {
+
+            return $this->render('rerouting/error500.html.twig');
             throw new Exception('This Invitation has already been used.');
         }
 

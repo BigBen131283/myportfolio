@@ -9,6 +9,8 @@ $backgroundLogo: #000;
 $adminTableBg: #f1f1f1;
 $alternateAdminTableBg: #45dea5;
 $thirdAdminTableBg: #181818;
+$redirectBackground: #020912;
+$redirectBackgroundButton: #416671;
 
 // lines
 
@@ -23,6 +25,8 @@ $logoName: #fff;
 $logoJob: #b4b4b4;
 $decorText: #7b7b7b;
 $adminTbodyText: #181818;
+$redirectError: #1b283a;
+$redirectButton: #fef2ca;
 
 $menuText: $logoJob;
 
@@ -32,10 +36,12 @@ $hoverButton: #08fdd8;
 
 $adminTableShadow : 0 5px 10px rgba(69,222,165,.75);
 $alternateAdminTableShadow : 0 5px 40px rgba(24,24,24,.75);
+$moonShadow: #f9f9f9;
 
 // Fonts
 $homepageMain: 'Raleway';
 $decor: 'Dancing Script';
+$redirect: 'Anton';
 
 /* Font-size */
 /* De base : 1rem = 16px */
